@@ -8,7 +8,6 @@ function showFile(input) {
         stringFile=reader.result + ' ';
     };
 }
-let BW;
 function findLengthBW() {
     let arraySubstring=getAllSubstring(document.getElementsByTagName('input')[1].value + ' ', document.getElementsByTagName('input')[2].value + ' ');
     console.log(arraySubstring)
