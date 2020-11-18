@@ -5,13 +5,13 @@ function showFile(input) {
     reader.readAsText(file);
     reader.onload=function() {
         document.getElementById('file').style.display='none';
-        stringFile=reader.result + ' ';
+        stringFile=' ' + reader.result + ' ';
     };
 }
 function findLengthBW() {
-    let arraySubstring=getAllSubstring(document.getElementsByTagName('input')[1].value + ' ', document.getElementsByTagName('input')[2].value + ' ');
+    let arraySubstring=getAllSubstring(' ' + document.getElementsByTagName('input')[1].value + ' ', ' ' + document.getElementsByTagName('input')[2].value + ' ');
     console.log(arraySubstring)
-    if(!arraySubstring.substrings1.length||!arraySubstring.substrings2) {
+    if(!arraySubstring.substrings1.length||!arraySubstring.substrings2.length) {
         document.getElementById('answer').innerHTML='Нет таких слов';
         return;
     }
@@ -21,22 +21,22 @@ function findLengthBW() {
 function getAllSubstring(str1, str2) {
     let substrings1=[];
     let substrings2=[];
-    let count=0;
-    while(true) {
-        if(stringFile.indexOf(str1, count)!==-1) {
-            substrings1.push(stringFile.indexOf(str1, count));
-            count=stringFile.indexOf(str1, count)+1;
+    let j,k=0;
+    for(let i=0;i<stringFile.length;i++) {
+        if(stringFile[i]===str1[j]) {
+            j++;
+            if(j===str1.length) 
+                substrings1.push(i-str1.length+1);
         }
-        else break;
-    }
-    count=0;
-    while(true) {
-        if(stringFile.indexOf(str2, count)!==-1) {
-            substrings2.push(stringFile.indexOf(str2, count));
-            count=stringFile.indexOf(str2, count)+1;
+        else j=0;
+        if(stringFile[i]===str2[k]) {
+            k++;
+            if(k===str2.length) 
+                substrings2.push(i-str2.length+1);
         }
-        else break;
+        else k=0;
     }
+    console.log(substrings1, substrings2)
     return {substrings1, substrings2}
 }
 
