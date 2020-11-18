@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>test</title>
+    <link rel="icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <link 
+     rel="stylesheet" 
+     type="text/css" 
+     href="styles/style.css">
+     <script defer src="scripts/script.js"></script>
+  </head>
+  <body>
+    <h1>Выберете файл</h1>
+    <input
+        id="file" 
+        type="file" 
+        onchange="showFile(this)">
+    <h1>Между какими словами найти расстояние?</h1>
+    <input type="text">
+    <input type="text">
+    <button onclick=findLengthBW()>Найти</button>
+    <h1 id="answer"></h1>
+  </body>
+</html>
