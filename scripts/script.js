@@ -10,31 +10,36 @@ function showFile(input) {
 }
 function findLengthBW() {
     let arraySubstring=getMinDistance(' ' + document.getElementsByTagName('input')[1].value + ' ', ' ' + document.getElementsByTagName('input')[2].value + ' ');
-    if(arraySubstring!==-1)document.getElementById('answer').innerHTML='Минимальное расстояние: ' + arraySubstring;
+    if(arraySubstring!==-1)document.getElementById('answer').innerHTML='Минимальное расстояние: ' + arraySubstring + ' слов';
     else document.getElementById('answer').innerHTML='Нет таких слов';
 }
 
 function getMinDistance(str1, str2) {
+    // if(str1===str2)return 0;
     let min=stringFile.length;
     let lastIndexFirstWord;
     let lastIndexSecondWord;
-    let j,k=0;
+    let j=k=0;
     for(let i=0;i<stringFile.length;i++) {
+        if(stringFile[i]===' ') {
+            lastIndexFirstWord++;
+            lastIndexSecondWord++;
+        }
         if(stringFile[i]===str1[j]) {
             j++;
             if(j===str1.length) {
-                if(i-str1.length-lastIndexSecondWord<min) 
-                    min=i-str1.length-lastIndexSecondWord
-            lastIndexFirstWord=i-2;
+                if(lastIndexSecondWord-1<min) 
+                    min=lastIndexSecondWord-1
+            lastIndexFirstWord=0;
             }
         }
         else j=0;
         if(stringFile[i]===str2[k]) {
             k++;
             if(k===str2.length) {
-                if(i-str2.length-lastIndexFirstWord<min) 
-                    min=i-str2.length-lastIndexFirstWord
-            lastIndexSecondWord=i-2;
+                if(lastIndexFirstWord-1<min) 
+                    min=lastIndexFirstWord-1
+            lastIndexSecondWord=0;
             }
         }
         else k=0;
